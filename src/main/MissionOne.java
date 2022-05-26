@@ -13,7 +13,18 @@ public class MissionOne {
 	 * @return array sorted
 	 */
 	public static <T extends Comparable<? super T>> T[] inplaceSort(T[] array) {
-		return null;
+		for(int i = 0; i < array.length ; i++) {
+			int sorted = array.length ;
+			for(int j = 1; j < sorted;j++) {
+				if(array[j].compareTo(array[j-1]) < 0) {
+					T temp = array[j];
+					array[j] = array[j-1];
+					array[j-1] = temp;
+				}
+			}
+			sorted--;
+		}
+		return array;
 	}
 	
 }

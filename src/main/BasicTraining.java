@@ -15,7 +15,14 @@ public class BasicTraining {
 		
 		return sorting(a, 0, a.length-1);
 	}
-	
+	/**
+	 * 
+	 * @param <T>
+	 * @param a
+	 * @param low
+	 * @param high
+	 * @return
+	 */
 	public static <T extends Comparable<? super T>> T[] sorting(T[] a, int low, int high ) {
 		if (low < high)
 	    {
@@ -84,9 +91,7 @@ public class BasicTraining {
 			return right;
 		}
 		
-		//T temp = array[last];
-		//array[last] = array[middle];
-		//array[middle] = temp;
+	
 		
 		
 	}
