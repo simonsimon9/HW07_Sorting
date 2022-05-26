@@ -68,5 +68,4 @@ public class BasicTrainingTest {
 		assertArrayEquals(test, expectedTest );
 		
 	}
-	
 }
