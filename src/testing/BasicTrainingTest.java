@@ -32,7 +32,7 @@ public class BasicTrainingTest {
 		
 	}
 	
-	@Test
+
 	public void testPartition0to4() {
 		Integer[] test = new Integer[] {2,1,0,3,8,7,6,5};
 		Integer[] expectedTest = new Integer[] {2,1,0,3,6,5,7,8};
@@ -40,13 +40,33 @@ public class BasicTrainingTest {
 		int first = 4;
 		int last = (test.length - 1);
 		BasicTraining.partition(test, first, last);
-		for(int element: test) {
-			System.out.print(element + " ");
-		}
-		System.out.println("");
-		for(int element: expectedTest){
-			System.out.print(element + " ");
-		}
+		
 		assertArrayEquals(test,expectedTest);
 	}
+	@Test
+	public void testPartition0tolast() {
+		Integer[] test = new Integer[] {10,7,12,6,3,2,8};
+		Integer[] expectedTest = new Integer[] {2,3,6,8,7,10,12};
+	
+		int first = 0;
+		int last = (test.length - 1);
+		BasicTraining.partition(test, first, last);
+		
+		assertArrayEquals(test,expectedTest);
+	}
+	
+	
+	@Test
+	public void testQuickSort() {
+		Integer[] test = new Integer[] {10,7,12,6,3,2,8};
+		Integer[] expectedTest = new Integer[] {2,3,6,7,8,10,12};
+
+		BasicTraining.quickSort(test);
+		for(Integer element: test) {
+			System.out.print(element + " ");
+		}
+		assertArrayEquals(test, expectedTest );
+		
+	}
+	
 }

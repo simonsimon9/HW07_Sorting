@@ -13,38 +13,19 @@ public class BasicTraining {
 	 */
 	public static <T extends Comparable<? super T>> T[] quickSort(T[] a) {
 		
-		int middle = (a.length - 1) / 2;
-		int last = (a.length - 1);
-		
-		swap(a, middle, last);
-		int pivot = last;
-		
-		int left = 0;
-		int right = last - 1;
-		
-		while(left < right) {
-			if(a[left].compareTo(a[pivot]) < 0 ) {
-				left++;
-			}
-			
-			if(a[right].compareTo(a[pivot]) > 0){
-				right--;
-			}
-			
-			if(a[left].compareTo(a[pivot]) > 0 && a[right].compareTo(a[pivot]) < 0) {
-				swap(a, left, right);
-				left++;
-				right--;
-			}
-			
-		}
-		
-		swap(a, pivot, left);
-		
-		//T temp = array[last];
-		//array[last] = array[middle];
-		//array[middle] = temp;
-		
+		return sorting(a, 0, a.length-1);
+	}
+	
+	public static <T extends Comparable<? super T>> T[] sorting(T[] a, int low, int high ) {
+		if (low < high)
+	    {
+	        /* pi is partitioning index, arr[pi] is now
+	           at right place */
+	        int pi = partition(a, low, high);
+
+	        sorting(a, low, pi - 1);  // Before pi
+	        sorting(a, pi + 1, high); // After pi
+	    }
 		return a;
 	}
 	
@@ -57,17 +38,19 @@ public class BasicTraining {
 		
 	}
 	
-	public static <T extends Comparable<? super T>> T[] partition(T[] a, int firstIndex, int lastIndex) {
+	public static <T extends Comparable<? super T>> int partition(T[] a, int firstIndex, int lastIndex) {
 		int middle = (lastIndex + firstIndex)/ 2;
 		int last = lastIndex;
 		
 		swap(a, middle, last);
-		int pivot = last;
 		
-		int left = firstIndex;
+		int pivot = last;
+		int left = firstIndex; 
 		int right = pivot - 1;
 		
+		
 		while(left < right) {
+			
 			if(a[left].compareTo(a[pivot]) < 0 ) {
 				left++;
 			}
@@ -78,31 +61,35 @@ public class BasicTraining {
 			
 			if(a[left].compareTo(a[pivot]) > 0 && a[right].compareTo(a[pivot]) < 0) {
 				swap(a, left, right);
-				System.out.println("swapped");
-				left++;
 				right--;
+				left++;
 			}
-			print(a, pivot, left, right);
+			
 		}
-		
-		swap(a, pivot, left);
+	
+		if(a[left].compareTo(a[pivot]) < 0 ) {
+			left++;
+		}
+		if(a[right].compareTo(a[pivot]) > 0 ) {
+			right++;
+		}
+	
+		if(a[left].compareTo(a[pivot])> 0) {
+			
+			swap(a, left, pivot);
+			return left;
+			
+		}else {
+			swap(a,right, pivot);
+			return right;
+		}
 		
 		//T temp = array[last];
 		//array[last] = array[middle];
 		//array[middle] = temp;
 		
-		return a;
 		
 	}
-	public static <T extends Comparable<? super T>> void print(T[] array, int pivot, int first, int last) {
-		
-		for(T element: array){
-			System.out.print(element + " ");
-		}
-		System.out.print("    pivot is at: " + pivot +
-						 " left is at: " +first+
-						 " right is at: " + last);
-		System.out.println("\n-------------");
-	}
+	
 	
 }
